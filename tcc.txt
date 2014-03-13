@@ -1,0 +1,1 @@
+03-13 18:43:44.499: I/ActivityManager(598): START u0 {act=android.intent.action.VIEW cat=[android.intent.category.DEFAULT] dat=file:///storage/emulated/0/easyovpn/GH_41.66.230.142_10875.ovpn typ=application/x-openvpn-profile cmp=android/com.android.internal.app.ResolverActivity} from pid 26019

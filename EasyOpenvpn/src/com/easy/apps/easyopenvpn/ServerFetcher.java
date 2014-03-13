@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ServerFetcher {
 	
-	private final static String OPEN_VPN_CATAGORY_URL = "http://14.47.2.38:47511/api/iphone/";
+	private final static String OPEN_VPN_CATAGORY_URL = "http://www.vpngate.net/api/iphone/";
 	
 	public static List<String> fetchFreeVpnServer(){
 		InputStreamReader in = null;
