@@ -8,11 +8,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Menu;
@@ -40,7 +42,14 @@ public class MainActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
+				Map uiSelectMap = dataList.get(arg2);
+				String ip = (String)uiSelectMap.get(Util.IP);
+				String base64Data = (String)uiSelectMap.get(Util.CONFIGDATA);
+				String name = (String)uiSelectMap.get(LockItemAdapter.APPNAME);
 				
+				String fullFilePath = MainActivity.this.saveConfigFile(ip, name, base64Data);
+				Log.d(TAG, "file path:" + fullFilePath);
+				openOpenvpnIntent(fullFilePath);
 			}
         
         });
@@ -99,6 +108,8 @@ public class MainActivity extends Activity {
 					Map uiMap = new HashMap();
 					uiMap.put(LockItemAdapter.APPNAME, subInfos.get(Util.COUNTRY));
 					uiMap.put(LockItemAdapter.ICON, MainActivity.this.getCounrtyIcon(subInfos.get(Util.COUNTRY_SHORT)));
+					uiMap.put(Util.IP, subInfos.get(Util.IP));
+					uiMap.put(Util.CONFIGDATA, subInfos.get(Util.CONFIGDATA));
 					dataList.add(uiMap);
 				}
 				
@@ -129,7 +140,7 @@ public class MainActivity extends Activity {
 		return null;
 	}
 	
-	private void saveConfigFile(String ip,String country){
+	private String saveConfigFile(String ip,String country,String base64Data){
 		File sdCard = Environment.getExternalStorageDirectory();
 		File dir = new File (sdCard.getAbsolutePath() + File.separator + TAG);
 		
@@ -140,12 +151,35 @@ public class MainActivity extends Activity {
 		String fileName = country + "-" + ip + ".config";
 		File file = new File(dir, fileName);
 		
+		String fullFilePath = sdCard.getAbsolutePath() + File.separator + TAG + File.separator + fileName;
+		
 		try {
+			String configData = Base64Coder.decodeString(base64Data);
 			FileOutputStream fos = new FileOutputStream(file);
-			fos.write(body.getBytes());
+			fos.write(configData.getBytes());
 	        fos.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return fullFilePath;
+	}
+	
+	private void openOpenvpnIntent(String fullFillName){
+		try{
+			Intent localIntent = new Intent("android.intent.action.VIEW");
+		    localIntent.addCategory("android.intent.category.DEFAULT");
+		    localIntent.setDataAndType(Uri.fromFile(new File(fullFillName)), "application/x-openvpn-profile");
+		    
+		    if (localIntent.resolveActivity(getPackageManager()) == null){
+		    	//TODO 
+		    }else{
+		    	this.startActivity(localIntent);
+		    	
+		    	new File(fullFillName).delete();
+		    }
+			 
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
