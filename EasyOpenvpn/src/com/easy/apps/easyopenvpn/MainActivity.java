@@ -1,23 +1,30 @@
 package com.easy.apps.easyopenvpn;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
+
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -25,14 +32,21 @@ import android.widget.ListView;
 public class MainActivity extends Activity {
 	private final String TAG = this.getClass().getSimpleName();
 	private ProgressDialog progressDialog;
+	private final static int OPENVPN = 1;
 	List<Map> dataList;
 	ListView actualListView; 
 	LockItemAdapter listItemAdapter;
+	private String mFullFilePath;
+	private AdView adView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		adView = (AdView)findViewById(R.id.adView);
+	    adView.loadAd(new AdRequest());
+		
 		actualListView = (ListView) findViewById(R.id.list);
 		 
 		actualListView.setClickable(true);
@@ -49,6 +63,7 @@ public class MainActivity extends Activity {
 				
 				String fullFilePath = MainActivity.this.saveConfigFile(ip, name, base64Data);
 				Log.d(TAG, "file path:" + fullFilePath);
+				mFullFilePath = fullFilePath;
 				openOpenvpnIntent(fullFilePath);
 			}
         
@@ -62,13 +77,6 @@ public class MainActivity extends Activity {
 		actualListView.setAdapter(listItemAdapter);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-	
 	@SuppressWarnings({ "rawtypes", "unused", "unchecked" })
 	private void refreshInfos() {
 		// for testing
@@ -80,8 +88,8 @@ public class MainActivity extends Activity {
 	    			progressDialog.dismiss();
 				
 				progressDialog = new ProgressDialog(MainActivity.this);
-			    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-			    progressDialog= ProgressDialog.show(MainActivity.this,"", "Loading vpn server list...",true,true);
+			    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);	
+			    progressDialog= ProgressDialog.show(MainActivity.this,MainActivity.this.getString(R.string.loading), MainActivity.this.getString(R.string.loading_msg),true,true);
 			    
 			    if(dataList !=null)
 			    	dataList.clear();
@@ -106,7 +114,7 @@ public class MainActivity extends Activity {
 					}
 					
 					Map uiMap = new HashMap();
-					uiMap.put(LockItemAdapter.APPNAME, subInfos.get(Util.COUNTRY));
+					uiMap.put(LockItemAdapter.APPNAME, countryName);
 					uiMap.put(LockItemAdapter.ICON, MainActivity.this.getCounrtyIcon(subInfos.get(Util.COUNTRY_SHORT)));
 					uiMap.put(Util.IP, subInfos.get(Util.IP));
 					uiMap.put(Util.CONFIGDATA, subInfos.get(Util.CONFIGDATA));
@@ -128,6 +136,33 @@ public class MainActivity extends Activity {
 			}
 		}.execute();
 	}
+	
+	@Override
+	  public boolean onCreateOptionsMenu(Menu menu) {
+	  	 super.onCreateOptionsMenu(menu);
+	  	 
+	  	
+	    MenuItem item4=menu.add(1,5,0,this.getString(R.string.resync));
+	       item4.setIcon(android.R.drawable.ic_menu_rotate);
+	  	 
+	  	 
+	       return true;
+	  }
+	
+	@Override
+	  public boolean onOptionsItemSelected(MenuItem item) {
+	  	switch (item.getItemId()) {
+	  		
+	  		case 5:
+	  			
+	  			refreshInfos();
+	  			
+	  			break;
+	  			
+	  	}
+	  	
+	  	return true;
+	  }
 	
 	private Drawable getCounrtyIcon(String name){
 		try{
@@ -165,22 +200,79 @@ public class MainActivity extends Activity {
 		return fullFilePath;
 	}
 	
+	@Override
+    protected void onDestroy(){
+		if(adView!=null)
+			adView.destroy();
+		
+    	super.onDestroy();
+	}
+	
 	private void openOpenvpnIntent(String fullFillName){
 		try{
 			Intent localIntent = new Intent("android.intent.action.VIEW");
 		    localIntent.addCategory("android.intent.category.DEFAULT");
 		    localIntent.setDataAndType(Uri.fromFile(new File(fullFillName)), "application/x-openvpn-profile");
 		    
-		    if (localIntent.resolveActivity(getPackageManager()) == null){
-		    	//TODO 
+		    if (!isInstalledOpenVPN()){
+		    	new AlertDialog.Builder(this)
+		    	.setTitle(android.R.string.dialog_alert_title)
+		    	.setIcon(android.R.drawable.ic_dialog_info)
+		    	.setMessage(this.getString(R.string.download))
+		    	.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						
+						Intent intentPro = new Intent("android.intent.action.VIEW");
+			  			intentPro.setData(Uri.parse("market://details?id=net.openvpn.openvpn"));
+			            startActivity(intentPro);
+			            dialog.dismiss();
+					}
+				}).show();
 		    }else{
-		    	this.startActivity(localIntent);
-		    	
-		    	new File(fullFillName).delete();
+		    	this.startActivityForResult(localIntent, OPENVPN);
 		    }
 			 
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(requestCode == OPENVPN){
+			
+			 if (resultCode != -1){
+				 
+				 if(mFullFilePath != null){
+					 
+					 File tmpFile = new File(mFullFilePath);
+					 
+					 if(tmpFile.exists())
+						 tmpFile.delete();
+				 }
+			 }
+		}
+	}
+	
+	private boolean isInstalledOpenVPN(){
+		boolean result = false;
+		final PackageManager pm = getPackageManager();
+		//get a list of installed apps.
+		List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
+
+		for (ApplicationInfo packageInfo : packages) {
+			if(packageInfo.packageName.equals("net.openvpn.openvpn")){
+				result = true;
+				break;
+			}else if(packageInfo.packageName.equals("de.schaeuffelhut.android.openvpn")){
+				result = true;
+				break;
+			}
+		}
+		
+		return result;
+	}
+	
 }

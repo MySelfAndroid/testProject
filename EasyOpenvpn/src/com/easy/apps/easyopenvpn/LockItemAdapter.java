@@ -17,6 +17,7 @@ public class LockItemAdapter extends BaseAdapter{
 	List<Map> listData;
 	public final static String ICON = "ICON";
 	public final static String APPNAME = "APPNAME";
+	public final static String IP = "IP";
 	
 	public LockItemAdapter(Context context,List<Map> listData) {  
 		this.context = context;  
@@ -67,9 +68,12 @@ public class LockItemAdapter extends BaseAdapter{
 		TextView appName = (TextView) convertView
 				.findViewById(R.id.app_name);
 		
+		TextView ip = (TextView) convertView
+				.findViewById(R.id.ip);
 		
 		icon.setImageDrawable((Drawable)item.get(ICON));	
 		appName.setText((String)item.get(APPNAME));
+		ip.setText((String)item.get(IP));
 		
 		return convertView;
 	}

@@ -4,5 +4,9 @@
     <string name="app_name">*FreeVPN</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-
+    <string name="loading">Loading</string>
+    <string name="loading_msg">Get free VPN server list...</string>
+    <string name="resync">Refresh server list</string>
+    <string name="more">More useful Apps</string>
+    <string name="download">Please install OpenVPN Connect App frist</string>
 </resources>

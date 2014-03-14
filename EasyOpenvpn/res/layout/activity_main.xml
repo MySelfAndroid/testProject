@@ -9,15 +9,15 @@
      <ListView android:id="@+id/list"  
 android:layout_weight="1" android:layout_height="match_parent" android:layout_width="match_parent"  />
     
-     <!--  com.google.ads.AdView android:id="@+id/adView"
+     <com.google.ads.AdView android:id="@+id/adView"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         ads:adUnitId="a1521af2ac2f2ba"
+                         ads:adUnitId="a15322ad866d5b2"
                          ads:adSize="BANNER"
                          android:layout_gravity="center"
                          android:layout_weight="0"
                          ads:testDevices="TEST_EMULATOR, TEST_DEVICE_ID"
-                         ads:loadAdOnCreate="true"/>-->
+                         ads:loadAdOnCreate="true"/>
 
 
 </LinearLayout >

@@ -15,10 +15,22 @@
 	android:layout_width="fill_parent"  
 	android:layout_height="wrap_content"  
 	android:textSize="18dip"  
-	android:textColor="@color/black"  
+	android:textColor="@color/blue"  
 	android:paddingTop="6dip"  
 	android:paddingRight="2dip"  
-	android:layout_toRightOf="@id/app_icon"    /> 
+	android:paddingLeft="5dip" 
+	android:layout_toRightOf="@id/app_icon"    />
+    
+    <TextView android:id="@+id/ip"  
+	android:layout_width="fill_parent"  
+	android:layout_height="wrap_content"  
+	android:textSize="18dip"  
+	android:textColor="@color/black"  
+	android:paddingTop="6dip"  
+	android:paddingRight="2dip"
+	android:paddingLeft="5dip"   
+	android:layout_toRightOf="@id/app_icon"   
+	android:layout_below="@+id/app_name" />
 	
     
 
