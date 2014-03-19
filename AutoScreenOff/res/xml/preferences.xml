@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" android:title="@string/option_title">
-   	<com.easy.apps.screencapture.AdmobPreference android:key="ad" />
+   	<com.easy.apps.autoscreenoff.AdmobPreference android:key="ad" />
     <CheckBoxPreference android:title="@string/enable_timer_title" android:summary="@string/enable_timer_summary" android:enabled="true" android:key="enableTimer" android:defaultValue="true"/>
     <CheckBoxPreference android:title="@string/enable_notify_title" android:summary="@string/enable_notify_summary" android:enabled="true" android:key="enableNotify" android:defaultValue="true"/>
    
@@ -9,8 +9,9 @@
     android:summary="@string/more_app_summary">
 
     <intent 
-        android:action="android.intent.action.VIEW"
-        android:data="market://details?id=com.easy.apps.systeminfofloatingwindows.pro"
+        android:action="com.screenoff"
+        android:targetPackage="com.easy.apps.autoscreenoff"
+        android:targetClass="com.easy.apps.autoscreenoff.MainActivity"
     />
     </Preference>
     
@@ -19,8 +20,9 @@
     android:summary="@string/network_app_summary">
 
     <intent 
-        android:action="android.intent.action.VIEW"
-        android:data="market://details?id=com.easy.apps.networkflowwindows"
+        android:action="com.uninstall"
+        android:targetPackage="com.easy.apps.autoscreenoff"
+        android:targetClass="com.easy.apps.autoscreenoff.MainActivity"
     />
     </Preference>
     

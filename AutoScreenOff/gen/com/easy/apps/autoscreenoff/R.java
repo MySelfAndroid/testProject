@@ -9,6 +9,49 @@ package com.easy.apps.autoscreenoff;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int backgroundColor=0x7f010000;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int keywords=0x7f010003;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int primaryTextColor=0x7f010001;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int refreshInterval=0x7f010004;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int secondaryTextColor=0x7f010002;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -119,4 +162,101 @@ public final class R {
         public static final int device=0x7f040000;
         public static final int preferences=0x7f040001;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a com_admob_android_ads_AdView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #com_admob_android_ads_AdView_backgroundColor com.easy.apps.autoscreenoff:backgroundColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_admob_android_ads_AdView_keywords com.easy.apps.autoscreenoff:keywords}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_admob_android_ads_AdView_primaryTextColor com.easy.apps.autoscreenoff:primaryTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_admob_android_ads_AdView_refreshInterval com.easy.apps.autoscreenoff:refreshInterval}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_admob_android_ads_AdView_secondaryTextColor com.easy.apps.autoscreenoff:secondaryTextColor}</code></td><td></td></tr>
+           </table>
+           @see #com_admob_android_ads_AdView_backgroundColor
+           @see #com_admob_android_ads_AdView_keywords
+           @see #com_admob_android_ads_AdView_primaryTextColor
+           @see #com_admob_android_ads_AdView_refreshInterval
+           @see #com_admob_android_ads_AdView_secondaryTextColor
+         */
+        public static final int[] com_admob_android_ads_AdView = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.easy.apps.autoscreenoff.R.attr#backgroundColor}
+          attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.easy.apps.autoscreenoff:backgroundColor
+        */
+        public static final int com_admob_android_ads_AdView_backgroundColor = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.easy.apps.autoscreenoff.R.attr#keywords}
+          attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.easy.apps.autoscreenoff:keywords
+        */
+        public static final int com_admob_android_ads_AdView_keywords = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.easy.apps.autoscreenoff.R.attr#primaryTextColor}
+          attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.easy.apps.autoscreenoff:primaryTextColor
+        */
+        public static final int com_admob_android_ads_AdView_primaryTextColor = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.easy.apps.autoscreenoff.R.attr#refreshInterval}
+          attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.easy.apps.autoscreenoff:refreshInterval
+        */
+        public static final int com_admob_android_ads_AdView_refreshInterval = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.easy.apps.autoscreenoff.R.attr#secondaryTextColor}
+          attribute's value can be found in the {@link #com_admob_android_ads_AdView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.easy.apps.autoscreenoff:secondaryTextColor
+        */
+        public static final int com_admob_android_ads_AdView_secondaryTextColor = 2;
+    };
 }

@@ -86,29 +86,9 @@ public class SettingsActivity extends PreferenceActivity  implements OnPreferenc
 			}
 		
 		Intent intent = new Intent();
-		//intent.setClass(this, CaptureServices.class);
+		intent.setClass(this, SensorService.class);
+		intent.setAction("com.firsttime");
 		this.startService(intent);
-	}
-	
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		 if ((keyCode == KeyEvent.KEYCODE_BACK)){
-			 new AlertDialog.Builder(this)
-		        .setIcon(android.R.drawable.ic_dialog_info)
-		        .setTitle(R.string.tit)
-		        .setMessage(this.getString(R.string.description))
-		        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		            @Override
-		            public void onClick(DialogInterface dialog, int which) {
-		                //Stop the activity
-
-		            	dialog.dismiss();
-		            	finish();
-		            	
-		            }
-		        })
-		        .show();
-		 }
-		 return super.onKeyDown(keyCode, event);
 	}
 	
 	private boolean getPrefs(Context context,String key){
@@ -165,10 +145,19 @@ public class SettingsActivity extends PreferenceActivity  implements OnPreferenc
 			
 			setPrefs(KEY_CALL_TIMER,false);
 			
-			//Intent intent = new Intent(); intent.setClass(this, CaptureServices.class); this.stopService(intent);
+			Intent intent = new Intent();
+			intent.setClass(this, SensorService.class);
+			this.stopService(intent);
+
 			
 		}else{
 			setPrefs(KEY_CALL_TIMER,true);
+			
+			Intent intent = new Intent();
+			intent.setClass(this, MainActivity.class);
+			this.startActivity(intent);
+			
+			
 			
 			//Intent intent = new Intent(); intent.setClass(this, CaptureServices.class); this.startService(intent);
 		}

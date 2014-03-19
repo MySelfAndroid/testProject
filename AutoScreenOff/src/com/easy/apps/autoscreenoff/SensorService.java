@@ -9,6 +9,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.OrientationEventListener;
 
 public class SensorService extends Service implements SensorEventListener{
@@ -34,8 +35,10 @@ public class SensorService extends Service implements SensorEventListener{
 			float f = arg0.values[0];
 
 			if ((f - this.nowValue < 0.5D) || (f - this.nowValue > -0.5D)) {
+				Log.d("@@@", "get sensor on !!");
 				this.nowValue = f;
-				this.deviceManager.lockNow();
+				if(this.isActiveAdmin())
+					this.deviceManager.lockNow();
 			}
 		}
 	}
@@ -69,6 +72,21 @@ public class SensorService extends Service implements SensorEventListener{
 	}
 	
 	public int onStartCommand(Intent paramIntent, int paramInt1, int paramInt2){
+		
+		Intent intent = paramIntent;
+		if(intent != null){
+			String action = intent.getAction();
+			if(action != null){
+				if(action.equals("com.lockoff")){
+					if (isActiveAdmin())
+						this.deviceManager.lockNow();
+				}
+				
+				if(action.equals("com.firsttime")){
+					return paramInt1;
+				}
+			}
+		}
 		
 		if (!isActiveAdmin())
 	      {

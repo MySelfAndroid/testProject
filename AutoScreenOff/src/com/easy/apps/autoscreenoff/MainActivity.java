@@ -1,5 +1,6 @@
 package com.easy.apps.autoscreenoff;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
@@ -26,8 +27,34 @@ public class MainActivity extends Activity {
 	    if (!isActiveAdmin())
 	        sendDeviceAdminIntent();
 	    else{
+	    	//deviceManager.lockNow();
+	    	//this.finish();
+	    }
+	    
+	    Intent intent = this.getIntent();
+	    if(intent != null){
+	    	String str = intent.getAction();
+	    	if(str!=null){
+	    		if(str.equals("com.screenoff")){
+		    		if (isActiveAdmin()){
+		    			this.deviceManager.lockNow();
+		    			this.finish();
+		    		}
+		    	}
+	    		
+	    		if(str.equals("com.uninstall")){
+	    			if (isActiveAdmin()){
+	    				this.deviceManager.removeActiveAdmin(mDeviceAdmin);
+	    			}
+	    			
+	    			Intent localIntent = new Intent("android.intent.action.DELETE", Uri.parse("package:com.easy.apps.autoscreenoff"));
+	    			this.startActivity(localIntent);
+	    		}
+	    	}
 	    	
 	    }
+	    
+	    this.finish();
 	}
 
 	@Override
@@ -50,9 +77,15 @@ public class MainActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 
 		if (requestCode == 1) {
-			if (resultCode != -1)
+			if (resultCode != -1){
 				Log.d("@@@", "admin ok");
+			}
 		}
+		
+		Intent intent = new Intent();
+		intent.setClass(this, SensorService.class);
+		intent.setAction("com.firsttime");
+		this.startService(intent);
 		
 		this.finish();
 	}
