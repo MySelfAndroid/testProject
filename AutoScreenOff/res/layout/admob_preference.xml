@@ -9,7 +9,7 @@
         android:id="@+id/adView" 
         android:layout_width="fill_parent" 
         android:layout_height="wrap_content" 
-        ads:adUnitId="a152d3a2cc17d47" 
+        ads:adUnitId="a15329bad890252" 
         ads:adSize="BANNER" 
         ads:loadAdOnCreate="true">       
 	</com.google.ads.AdView>
