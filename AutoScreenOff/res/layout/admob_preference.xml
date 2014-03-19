@@ -1,0 +1,17 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" 
+    xmlns:myapp="http://schemas.android.com/apk/res/com.easy.apps.screencapture" 
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent">
+  
+    <com.google.ads.AdView  
+        android:id="@+id/adView" 
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content" 
+        ads:adUnitId="a152d3a2cc17d47" 
+        ads:adSize="BANNER" 
+        ads:loadAdOnCreate="true">       
+	</com.google.ads.AdView>
+
+</LinearLayout>
