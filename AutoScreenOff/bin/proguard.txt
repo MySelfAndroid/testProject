@@ -1,0 +1,21 @@
+# view AndroidManifest.xml #generated:36
+-keep class com.easy.apps.autoscreenoff.AdminReceiver { <init>(...); }
+
+# view res/xml/preferences.xml #generated:3
+-keep class com.easy.apps.autoscreenoff.AdmobPreference { <init>(...); }
+
+# view AndroidManifest.xml #generated:27
+-keep class com.easy.apps.autoscreenoff.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:32
+-keep class com.easy.apps.autoscreenoff.SensorService { <init>(...); }
+
+# view AndroidManifest.xml #generated:16
+-keep class com.easy.apps.autoscreenoff.SettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:46
+-keep class com.google.ads.AdActivity { <init>(...); }
+
+# view res/layout/admob_preference.xml #generated:8
+-keep class com.google.ads.AdView { <init>(...); }
+

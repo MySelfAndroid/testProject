@@ -229,7 +229,7 @@ public class SettingsActivity extends PreferenceActivity  implements OnPreferenc
 
 		      Intent notifyIntent = new Intent(); 
 		      notifyIntent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK);
-		      notifyIntent.setClass(this, MainActivity.class);
+		      notifyIntent.setClass(this, SettingsActivity.class);
 		      
 		      String msg = this.getString(R.string.google_serach_notify);
 		      

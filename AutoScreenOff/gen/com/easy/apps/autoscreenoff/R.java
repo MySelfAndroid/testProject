@@ -197,7 +197,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.easy.apps.autoscreenoff:backgroundColor
+          @attr name android:backgroundColor
         */
         public static final int com_admob_android_ads_AdView_backgroundColor = 0;
         /**
@@ -211,7 +211,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.easy.apps.autoscreenoff:keywords
+          @attr name android:keywords
         */
         public static final int com_admob_android_ads_AdView_keywords = 3;
         /**
@@ -226,7 +226,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.easy.apps.autoscreenoff:primaryTextColor
+          @attr name android:primaryTextColor
         */
         public static final int com_admob_android_ads_AdView_primaryTextColor = 1;
         /**
@@ -240,7 +240,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.easy.apps.autoscreenoff:refreshInterval
+          @attr name android:refreshInterval
         */
         public static final int com_admob_android_ads_AdView_refreshInterval = 4;
         /**
@@ -255,7 +255,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.easy.apps.autoscreenoff:secondaryTextColor
+          @attr name android:secondaryTextColor
         */
         public static final int com_admob_android_ads_AdView_secondaryTextColor = 2;
     };

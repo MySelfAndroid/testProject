@@ -31,16 +31,16 @@ public class SensorService extends Service implements SensorEventListener{
 	@Override
 	public void onSensorChanged(SensorEvent arg0) {
 		// TODO Auto-generated method stub
-		if (arg0.sensor.getType() == 8) {
+		//if (arg0.sensor.getType() == 8) {
 			float f = arg0.values[0];
-
+			Log.d("@@@", "get sensor "+ String.valueOf(f));
 			if ((f - this.nowValue < 0.5D) || (f - this.nowValue > -0.5D)) {
 				Log.d("@@@", "get sensor on !!");
-				this.nowValue = f;
+				//this.nowValue = f;
 				if(this.isActiveAdmin())
 					this.deviceManager.lockNow();
 			}
-		}
+		//}
 	}
 
 	@Override
@@ -56,8 +56,7 @@ public class SensorService extends Service implements SensorEventListener{
 		this.mSensorManager = ((SensorManager)getSystemService("sensor"));
 		this.mProximity = this.mSensorManager.getDefaultSensor(8);
 		this.mDeviceAdmin = new ComponentName(this, AdminReceiver.class);
-		
-		this.mSensorManager.registerListener(this, this.mProximity, 3);
+
 			
 	}
 	
@@ -72,6 +71,8 @@ public class SensorService extends Service implements SensorEventListener{
 	}
 	
 	public int onStartCommand(Intent paramIntent, int paramInt1, int paramInt2){
+		if(mSensorManager == null)
+			this.mSensorManager.registerListener(this, this.mProximity, 3);
 		
 		Intent intent = paramIntent;
 		if(intent != null){
