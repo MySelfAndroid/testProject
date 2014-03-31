@@ -2,6 +2,10 @@ package com.apps.easy.rootchecker;
 
 import java.io.File;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
+
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -18,16 +22,22 @@ public class MainActivity extends Activity {
 	private TextView tv1;
 	private TextView tv2;
 	private RelativeLayout rl1;	
-	private ProgressDialog mProgressDialog;
+	private RelativeLayout rl2;	
+	private ProgressDialog progressDialog;
+	private AdView adView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		adView = (AdView)findViewById(R.id.adView);
+	    adView.loadAd(new AdRequest());
+		
 		tv1 = (TextView) this.findViewById(R.id.textView1);
 		tv2 = (TextView) this.findViewById(R.id.textView2);
 		rl1 = (RelativeLayout) this.findViewById(R.id.relativeLayout1);
+		rl2 = (RelativeLayout) this.findViewById(R.id.relativeLayout2);
 		
 		rl1.setOnClickListener(new OnClickListener(){
 
@@ -39,6 +49,13 @@ public class MainActivity extends Activity {
 		    		
 		    		@Override
 		            protected void onPreExecute() {
+		    			if(progressDialog!=null)
+			    			progressDialog.dismiss();
+						
+						progressDialog = new ProgressDialog(MainActivity.this);
+					    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);	
+					    progressDialog= ProgressDialog.show(MainActivity.this,"", "Checking...",true,true);
+					    
 		    		}
 
 					@Override
@@ -60,13 +77,17 @@ public class MainActivity extends Activity {
 					
 					@Override
 					protected void onPostExecute(Object result) {
+						
+						if(progressDialog!=null)
+			    			progressDialog.dismiss();
+						
 						Boolean b = (Boolean) result;
 						if(b){
-							rl1.setBackgroundColor(MainActivity.this.getResources().getColor(R.color.red));
+							rl2.setBackgroundColor(MainActivity.this.getResources().getColor(R.color.red));
 							tv2.setTextColor(Color.WHITE);
 							tv2.setText(R.string.result_already);
 						}else{
-							rl1.setBackgroundColor(MainActivity.this.getResources().getColor(R.color.green_light));
+							rl2.setBackgroundColor(MainActivity.this.getResources().getColor(R.color.green_light));
 							tv2.setTextColor(Color.WHITE);
 							tv2.setText(R.string.result_not);
 						}
@@ -75,15 +96,6 @@ public class MainActivity extends Activity {
 		    	
 		    	}.execute();
 				
-				if(isRooted()){
-					rl1.setBackgroundColor(MainActivity.this.getResources().getColor(R.color.red));
-					tv2.setTextColor(Color.WHITE);
-					tv2.setText(R.string.result_already);
-				}else{
-					rl1.setBackgroundColor(MainActivity.this.getResources().getColor(R.color.green_light));
-					tv2.setTextColor(Color.WHITE);
-					tv2.setText(R.string.result_not);
-				}
 			}
 			
 		});
@@ -113,6 +125,14 @@ public class MainActivity extends Activity {
 	        }
 	    }
 	    return found;
+	}
+	
+	@Override
+    protected void onDestroy(){
+		if(adView!=null)
+			adView.destroy();
+		
+    	super.onDestroy();
 	}
 
 }
