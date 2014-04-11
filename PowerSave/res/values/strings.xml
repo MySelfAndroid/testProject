@@ -1,8 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">PowerSave</string>
+    <string name="app_name">AutoScreenOff</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-
+    <string name="extend">AutoScreenOff need this permission to turn off screen</string>
+	 <string name="dialog_msg">OK</string>
+    <string name="item1">More Useful Apps</string>
+    <string name="item2">Rate 5 star</string>
+    <string name="option_title">Auto Screen Off Options</string>
+    <string name="enable_timer_title">Enable Auto Screen Off?</string>
+    <string name="enable_timer_summary">Enable Auto Screen Off when you put the cover on screen</string>
+    <string name="enable_notify_title">Enable notify?</string>
+	<string name="enable_notify_summary">Enable notify on status bar</string>
+	<string name="enable_end_title">Enable force end call?</string>
+	<string name="enable_end_summary">Enable force end call when call is time up</string>
+	<string name="choose_time_title">Screen Off Now!!</string>
+	<string name="choose_time_summary">Tap which to turn off the Screen</string>
+	<string name="choose_color_title">Choose Resource Monitor color</string>
+	<string name="choose_color_summary">Choose which color for display</string>
+	<string name="enable_search_title">Enable auto Google Search?</string>
+	<string name="enable_search_summary">Enable auto Google Search for unknow caller</string>
+	<string name="alert">Calling Over %s mins, Timp UP!!</string>
+	<string name="alert_title">Calling Timp UP Alert</string>
+    <string name="google_serach_notify">Tap to on off Auto Screen Off</string>
+    <string name="google_serach_notify_title">Auto Screen Off</string>
+ 	<string name="more_app">Screen Off Now!!</string>
+	<string name="more_app_summary">Turn off the screen immediately</string>
+	<string name="time_up_notify"> Call Timer Alert !</string>
+	
+	<string name="network_app">Uninstll</string>
+	<string name="network_app_summary">Uninstall this App</string>
+	<string name="description">If your device is NOT Galaxy serial, please try to use "long press" the \r\n \"Sound Vol- Key\" and \"screen on-off key\" \r\nto capture the screenshot</string>
+	<string name="tit">Usage info</string>
+	<string name="ul">The Upper Left</string>
+        <string name="ur">The Upper Right</string>
+        <string name="lf">The Lower Left</string>
+        <string name="lr">The Lower Right</string>
+        <string name="top">TOP</string>
+        <string name="bottom">BOTTOM</string>
+        <string name="center">CENTER</string>
+        <string name="left">LEFT</string>
+        <string name="right">RIGHT</string>
+        
+        <string name="notify">Click to enable or disable Auto Screen off</string>
+        <string name="white">White</string>
+        <string name="black">Black</string>
+        <string name="yellow">Yellow</string>
+        <string name="blue">Blue</string>
+        <string name="orange">Orange</string>
+        <string name="green">Green</string>
+		 <string name="red">Red</string>
+		 <string name="cyan">Cyan</string>
+        <string name="lightblue">Light Blue</string>
+        <string name="lightred">Light Red</string>
 </resources>

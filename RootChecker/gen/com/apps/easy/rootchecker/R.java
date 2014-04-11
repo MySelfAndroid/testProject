@@ -82,11 +82,11 @@ containing a value of this type.
     }
     public static final class id {
         public static final int action_settings=0x7f090005;
-        public static final int adView=0x7f090004;
-        public static final int relativeLayout1=0x7f090001;
-        public static final int relativeLayout2=0x7f090000;
-        public static final int textView1=0x7f090003;
-        public static final int textView2=0x7f090002;
+        public static final int adView=0x7f090000;
+        public static final int relativeLayout1=0x7f090002;
+        public static final int relativeLayout2=0x7f090001;
+        public static final int textView1=0x7f090004;
+        public static final int textView2=0x7f090003;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -166,7 +166,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.apps.easy.rootchecker:backgroundColor
+          @attr name android:backgroundColor
         */
         public static final int com_admob_android_ads_AdView_backgroundColor = 0;
         /**
@@ -180,7 +180,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.apps.easy.rootchecker:keywords
+          @attr name android:keywords
         */
         public static final int com_admob_android_ads_AdView_keywords = 3;
         /**
@@ -195,7 +195,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.apps.easy.rootchecker:primaryTextColor
+          @attr name android:primaryTextColor
         */
         public static final int com_admob_android_ads_AdView_primaryTextColor = 1;
         /**
@@ -209,7 +209,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.apps.easy.rootchecker:refreshInterval
+          @attr name android:refreshInterval
         */
         public static final int com_admob_android_ads_AdView_refreshInterval = 4;
         /**
@@ -224,7 +224,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.apps.easy.rootchecker:secondaryTextColor
+          @attr name android:secondaryTextColor
         */
         public static final int com_admob_android_ads_AdView_secondaryTextColor = 2;
     };

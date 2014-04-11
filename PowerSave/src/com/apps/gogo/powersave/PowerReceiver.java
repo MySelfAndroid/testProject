@@ -9,8 +9,11 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 
+
 public class PowerReceiver extends BroadcastReceiver{
 
+	private static boolean FLAG = false;
+	
 	@Override
 	public void onReceive(Context arg0, Intent arg1) {
 		// TODO Auto-generated method stub
@@ -19,7 +22,14 @@ public class PowerReceiver extends BroadcastReceiver{
 		if(str != null){
 			
 			if(str.equals("android.intent.action.BATTERY_LOW")){
+				if(!FLAG)
+					savaStatus2Prefs(arg0);
 				setPowerSaverWork(arg0);
+			}
+			
+			if(str.equals("android.intent.action.BATTERY_OKAY")){
+				FLAG = false;
+				this.reStoreSettings(arg0);
 			}
 		}
 	}
@@ -54,10 +64,33 @@ public class PowerReceiver extends BroadcastReceiver{
 
 	     editor.putInt("state_of_auto_brightness_key",  b);
 	        
-	        editor.commit();
+	     editor.commit();
+	     FLAG = true;
 	}
 	
-	private void setPowerSaverWork(Context context){
+	private void setPowerSaverWork(Context context) {
+		ContentResolver localContentResolver = context.getContentResolver();
+		SharedPreferences prefs = PreferenceManager
+				.getDefaultSharedPreferences(context);
+		
+		int gps = prefs.getInt("enable_gps", 0);
+		int brightness = prefs.getInt("screen_brightness", 30);
+		int screenTimeout = prefs.getInt("screen_off_timeout", 30000);
+		
+		if(gps > 0)
+			Settings.Secure.putString(localContentResolver,
+					"location_providers_allowed", "+" + "gps");
+
+		Settings.Secure.putInt(localContentResolver, "assisted_gps_enabled", gps);
+
+		Settings.System.putInt(localContentResolver, "screen_brightness", brightness);
+
+		Settings.System.putInt(localContentResolver, "screen_off_timeout",
+				screenTimeout);
+	}
+	
+	private void reStoreSettings(Context context){
+		
 		ContentResolver localContentResolver = context.getContentResolver();
 		
 		 Settings.Secure.putString(localContentResolver, "location_providers_allowed", "-" + "gps");
@@ -69,7 +102,7 @@ public class PowerReceiver extends BroadcastReceiver{
 	     Settings.System.putInt(localContentResolver, "screen_off_timeout", 3*1000);
 	}
 	
-	  private static boolean isLocationProviderEnable(ContentResolver paramContentResolver, String paramString)
+	private static boolean isLocationProviderEnable(ContentResolver paramContentResolver, String paramString)
 	  {
 	    String str = Settings.Secure.getString(paramContentResolver, "location_providers_allowed");
 	    return (str != null) && ((str.equals(paramString)) || (str.contains("," + paramString + ",")) || (str.startsWith(paramString + ",")) || (str.endsWith("," + paramString)));
