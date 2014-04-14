@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ThemeFile</string>
+    <string name="app_name">LINE Theme Changer</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-
+     <string name="loading">Loading</string>
+    <string name="loading_msg">Get free VPN server list...</string>
+    <string name="resync">Refresh server list</string>
+    <string name="more">More useful Apps</string>
+    <string name="download">Please install OpenVPN Connect App frist</string>
+    <string name="alert_title">Information</string>
+     <string name="btn_ref">Re-Scan from SDCard</string>
+     <string name="btn_dl">Dowload theme files</string>
+      <string name="copyfail_msg">Copy theme file failed</string>
+      <string name="using_msg"></string>
+      <string name="dlinfo">Download Choose</string>
+       <string name="dlitem1">Download theme page 1</string>
+        <string name="dlitem2">Download theme page 2</string>
+    <string name="confirm_msg">Do you want to use this theme file?</string>
+    <string name="howtoUse">How to use?</string>
+    
+     <string name="info2">The theme file need to save in Donwload folder \r\n
+        After you click apply the theme, you need to do as below:\r\n
+        1.go back to LINE APP\r\n
+        2.go to settings of LIEN \r\n
+        3.choose the apply to origin theme \r\n
+        4.then LIEN will restart, go back to settings \r\n
+        5.disable the network, choose apply the robbit theme \r\n</string>
+    
+    <string name="info">After you click apply the theme, you need to do as below:\r\n
+        1.go back to LINE APP\r\n
+        2.go to settings of LIEN \r\n
+        3.choose the apply to origin theme \r\n
+        4.then LIEN will restart, go back to settings \r\n
+        5.disable the network, choose apply the robbit theme \r\n</string>
+        <string name="attend">How to enable new theme</string>
+ 	<string name="alert_msg">Sorry, cannot find any theme file in Download folder of SDCARD, you can use the refrash button to reload again</string>
 </resources>

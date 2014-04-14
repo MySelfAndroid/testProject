@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LINE主題變換器</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+     <string name="loading">自動搜尋SDCARD的主題中</string>
+    <string name="loading_msg">Get free VPN server list...</string>
+    <string name="resync">Refresh server list</string>
+    <string name="more">More useful Apps</string>
+    <string name="download">Please install OpenVPN Connect App frist</string>
+    <string name="alert_title">資訊</string>
+     <string name="btn_ref">重新搜尋SDCARD的主題</string>
+     <string name="btn_dl">下載主題</string>
+      <string name="copyfail_msg">複製主題檔案失敗</string>
+      <string name="using_msg"></string>
+    <string name="confirm_msg">您確定要套用這個主題嗎？</string>
+       <string name="dlinfo">選擇下載</string>
+       <string name="dlitem1">下載主題網1</string>
+        <string name="dlitem2">下載主題網2</string>
+        <string name="howtoUse">快速使用說明</string>
+        
+        <string name="info2">您下載的主題檔,需要存在Download資料夾下才會掃描的到\r\n
+            當您套用成功後,您需要按照下列步驟開始使用新主題:\r\n
+        1.開啟LINE APP\r\n
+        2.到設定>主題>主題一覽頁面 \r\n
+        3.套用回原始主題 \r\n
+        4.LINE會重新開啟,然後再回到主題一覽 \r\n
+        5.關閉網路,再套用兔兔主題 \r\n</string>
+        
+        
+    <string name="info">當您套用成功後,您需要按照下列步驟開始使用新主題:\r\n
+        1.開啟LINE APP\r\n
+        2.到設定>主題>主題一覽頁面 \r\n
+        3.套用回原始主題 \r\n
+        4.LINE會重新開啟,然後再回到主題一覽 \r\n
+        5.關閉網路,再套用兔兔主題 \r\n</string>
+        <string name="attend">如何啟用下載的新主題</string>
+ 	<string name="alert_msg">抱歉,在您的(Download)下載資料夾下找不到任何LINE的主題檔案,請確認您下載的主題存放在SDCARD的下載資料夾中</string>
+</resources>
