@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SmartCallRecorder</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+	<string name="enable_title_enable">Enable</string>
+	<string name="enable_title_disable">Disable</string>
+	<string name="enable_msg_detail">Auto call recorder feature</string>
+	<string name="item1">Play Recorder</string>
+	<string name="item2">Delete Recorder</string>
+	<string name="item3">Open Recorder Path</string>
+	
+</resources>
