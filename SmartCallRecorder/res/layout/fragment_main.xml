@@ -9,5 +9,11 @@
     tools:context="com.easyway.apps.smartcallrecorder.MainActivity$PlaceholderFragment" >
 
     <include android:id="@+id/itemView" layout="@layout/item" />
-
+	
+   
+	<br.com.dina.ui.widget.UITableView android:id="@+id/tableView" style="@style/UITableView" android:layout_below="@+id/itemView"
+	    android:layout_marginTop ="10dp" />
+	
+	
+    
 </RelativeLayout>
