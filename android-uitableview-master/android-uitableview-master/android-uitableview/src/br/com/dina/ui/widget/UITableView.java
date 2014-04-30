@@ -143,6 +143,10 @@ public class UITableView extends LinearLayout {
 		}
 	}
 	
+	public BasicItem getItem(int index){
+		return (BasicItem)mItemList.get(index);
+	}
+	
 	/**
 	 * 
 	 * @param view

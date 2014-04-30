@@ -83,10 +83,15 @@ public class EzPhoneReceiver extends BroadcastReceiver{
 							Recorder.stopRecording();
 							Recorder.setOnUse(false);
 							
-							String date = SaveRecorderFileInDB.queryLatestID(context);
-							String fileName = Recorder.getFlName(); 
+							Map map = SaveRecorderFileInDB.queryLatestID(context);
+							if(map !=null){
+								
+								String fileName = Recorder.getFlName(); 
+								
+								SaveRecorderFileInDB.saveFileNameInDB(context, fileName, (String)map.get("date"),(String)map.get("name"));
+							}
 							
-							SaveRecorderFileInDB.saveFileNameInDB(context, fileName, date);
+							
 						}
 					}
 					break;
@@ -111,6 +116,7 @@ public class EzPhoneReceiver extends BroadcastReceiver{
 				String oldNumber = (String)map.get("number");
 				String date = (String)map.get("date");
 				String dur = (String)map.get("dur");
+				String name = (String)map.get("name");
 				
 				long durDate = Long.parseLong(dur);
 				
@@ -142,7 +148,7 @@ public class EzPhoneReceiver extends BroadcastReceiver{
 					
 					Log.d("@@@","Recorder.getFlName2:"+ fileName +","+number);
 					
-					SaveRecorderFileInDB.saveFileNameInDB(context, fileName, number);
+					SaveRecorderFileInDB.saveFileNameInDB(context, fileName, number,name);
 					
 					break;
 				}

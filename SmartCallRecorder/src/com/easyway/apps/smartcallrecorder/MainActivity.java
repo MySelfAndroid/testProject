@@ -30,7 +30,7 @@ import android.widget.Toast;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
-	UITableView tableView;
+	static UITableView tableView;
 	ProgressDialog progDialog;
 	private SQL4 dbHelper;
 	String filepath = Environment.getExternalStorageDirectory().getPath();
@@ -40,7 +40,6 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        tableView = (UITableView)this.findViewById(R.id.tableView);
         dbHelper = new SQL4(this);
         
         if (savedInstanceState == null) {
@@ -57,16 +56,18 @@ public class MainActivity extends ActionBarActivity {
     	reloadView();
     }
     
-    private void reloadView(){
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	private void reloadView(){
     	
     	new AsyncTask(){
     		@Override
             protected void onPreExecute() {
     			
     			progDialog = ProgressDialog.show(MainActivity.this, "",
-     	                "Loding...", true, true);
+     	                "Loading...", true, true);
     			
-    			tableView.clear();
+    			if(tableView!=null)
+    				tableView.clear();
     		}
     		
     		@Override
@@ -81,7 +82,13 @@ public class MainActivity extends ActionBarActivity {
     				
     				for(int i=0;i<recorders.size();i++){
     					HashMap map = (HashMap)recorders.get(i);
-    					tableView.addBasicItem((String)map.get("filename"),(String)map.get("number"));
+    					String name = (String)map.get("name");
+    					
+    					if(name != null && !name.equals("")){
+    						tableView.addBasicItem((String)map.get("filename"),name);
+    					}else
+    						tableView.addBasicItem((String)map.get("filename"),(String)map.get("number"));
+    					
     				}
     			
     			}
@@ -95,11 +102,25 @@ public class MainActivity extends ActionBarActivity {
     			if(progDialog != null && progDialog.isShowing())
     				progDialog.dismiss();
     			
-    			if(tableView.getCount() > 0){
+    			if(tableView!=null && tableView.getCount() > 0){
     				tableView.commit();
+    			}else{
+    				new AlertDialog.Builder(MainActivity.this)
+				 	
+		            .setIcon(android.R.drawable.ic_dialog_info)
+		            .setTitle("Alert")
+		            .setMessage("no any call recorders found!!")
+		            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		                @Override
+		                public void onClick(DialogInterface dialog, int which) {
+		                    //Stop the activity
+		                	dialog.dismiss();
+		                }
+		            })
+		            .show();
     			}
     		}
-    	};
+    	}.execute();
     }
     
     private List getRecordersList(){
@@ -114,8 +135,10 @@ public class MainActivity extends ActionBarActivity {
 			HashMap<String, String> map = new HashMap<String, String>();
 			String filename = c.getString(1);
 			String number = c.getString(2);
+			String name = c.getString(3);
 			map.put("filename", filename);
 			map.put("number", number);
+			map.put("name", name);
 			alist.add(map);
 			c.moveToNext();
 		}
@@ -155,6 +178,7 @@ public class MainActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            tableView = (UITableView) rootView.findViewById(R.id.tableView);
             return rootView;
         }
     }

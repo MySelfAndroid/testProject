@@ -15,13 +15,13 @@ public class SaveRecorderFileInDB {
 	static Context mContext;
 	private static SQL4 dbHelper;
 	
-	public static String queryLatestID(Context context){
+	public static Map queryLatestID(Context context){
 		mContext = context;
 		
 		Log.d("@@@", "queryLatestID:");
 		try{
 			
-		
+		Map map = new HashMap();
 		ContentResolver mContentResolver = mContext.getContentResolver();
 		
 		String[] projection = new String[] {CallLog.Calls._ID, CallLog.Calls.CACHED_NAME, CallLog.Calls.DATE, CallLog.Calls.DURATION, CallLog.Calls.NUMBER, CallLog.Calls.TYPE };
@@ -35,6 +35,9 @@ public class SaveRecorderFileInDB {
     	 String date = calls.getString(calls
                 .getColumnIndex(CallLog.Calls.DATE));
     	 
+    	 String name= calls.getString(calls
+                 .getColumnIndex(CallLog.Calls.CACHED_NAME));
+    	 
     	 SimpleDateFormat sdf = new SimpleDateFormat();
     	 String time = sdf.format(Long.parseLong(date));
     	 
@@ -42,11 +45,14 @@ public class SaveRecorderFileInDB {
     	 Log.d("@@@", "latest time:"+ time);
     	 calls.close();
     	 
-    	 return date;
+    	 map.put("date", date);
+    	 map.put("name", name);
+    	 
+    	 return map;
     	 
 		}catch(Exception e){
 			e.printStackTrace();
-			return "no date";
+			return null;
 		}
 	}
 	
@@ -73,12 +79,15 @@ public class SaveRecorderFileInDB {
 	    	 String dur = calls.getString(calls
 		                .getColumnIndex(CallLog.Calls.DURATION));
 	    	 
-	    	 
+	    	 String name = calls.getString(calls
+		                .getColumnIndex(CallLog.Calls.CACHED_NAME
+		                		));
 	    	 
 	    	 Map map = new HashMap();
 	    	 map.put("number", number);
 	    	 map.put("date", date);
 	    	 map.put("dur", dur);
+	    	 map.put("name", name);
 	    	 
 	    	 calls.close();
 	    	 
@@ -91,7 +100,7 @@ public class SaveRecorderFileInDB {
 	}
 	
 	
-	public static void saveFileNameInDB(Context context, String fileName, String date){
+	public static void saveFileNameInDB(Context context, String fileName, String date, String name){
 		
 		Log.d("@@@", "saveFileNameInDB:");
 		
@@ -101,7 +110,7 @@ public class SaveRecorderFileInDB {
 		dbHelper = new SQL4(mContext);
 		
 		try {
-			Log.d("@@@", "create filename in db: "+ dbHelper.create(fileName, date));
+			Log.d("@@@", "create filename in db: "+ dbHelper.create(fileName, date, name));
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

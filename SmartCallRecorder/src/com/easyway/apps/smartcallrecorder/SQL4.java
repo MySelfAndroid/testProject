@@ -135,10 +135,11 @@ public class SQL4 extends SQLiteOpenHelper {
 	}
 	
 	//新增一筆記錄，成功回傳rowID，失敗回傳-1
-	public long create(String filename, String date) throws Exception{
+	public long create(String filename, String date, String name) throws Exception{
 		ContentValues args = new ContentValues();
 		args.put("filename", filename);
 		args.put("date", date);
+		args.put("name", name);
 		
 		return db.insert("MyRecorder", null, args);
     }
