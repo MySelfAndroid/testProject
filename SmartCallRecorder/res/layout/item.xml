@@ -4,7 +4,9 @@
     android:layout_height="80dp"
     android:clickable="true"
     android:longClickable="true"
-    android:background="@drawable/item_selector" >
+    android:background="@drawable/item_selector" 
+     android:id="@+id/rl"
+    >
 
     <View
         android:id="@+id/divider"

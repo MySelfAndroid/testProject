@@ -8,14 +8,16 @@
     android:paddingRight="10dip"
     android:paddingBottom="10dip"
     android:id="@+id/viewsContainer">
-    
-    <LinearLayout
-		android:orientation="vertical" 
-		android:layout_width="fill_parent" 
-		android:layout_height="wrap_content"
-    	style="@style/list_container"
-    	android:id="@+id/buttonsContainer" >		    	
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+    	<LinearLayout
+			android:orientation="vertical" 
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"
+    		style="@style/list_container"
+    		android:id="@+id/buttonsContainer" >		    	
     	
-    </LinearLayout>
-		    
+    	</LinearLayout>
+	</ScrollView>
 </LinearLayout>

@@ -43,6 +43,7 @@ public class SaveRecorderFileInDB {
     	 
     	 Log.d("@@@", "latest date:"+ date);
     	 Log.d("@@@", "latest time:"+ time);
+    	 Log.d("@@@", "latest name:"+ name);
     	 calls.close();
     	 
     	 map.put("date", date);

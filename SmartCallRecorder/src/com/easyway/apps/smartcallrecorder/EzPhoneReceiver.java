@@ -1,7 +1,11 @@
 package com.easyway.apps.smartcallrecorder;
 
 import java.util.Map;
+import java.util.Random;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -15,10 +19,11 @@ public class EzPhoneReceiver extends BroadcastReceiver{
 	private static String incoming_number = null;
 	private static boolean incomingFlag = false;
 	private static int count = 0;
+	private Context mContext;
 	
 	@Override
 	public void onReceive(final Context context, Intent intent) {
-		
+		mContext = context;
 		if (intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL)) {
 			
 			final String phoneNumber = intent
@@ -42,6 +47,7 @@ public class EzPhoneReceiver extends BroadcastReceiver{
 						Recorder.setOnUse(true);
 						
 						chkOutGoingCallEnd(oldtime,phoneNumber,context);
+						
 					}
 				}
 			}.start();
@@ -83,12 +89,21 @@ public class EzPhoneReceiver extends BroadcastReceiver{
 							Recorder.stopRecording();
 							Recorder.setOnUse(false);
 							
+							try {
+								Thread.sleep(2000);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
 							Map map = SaveRecorderFileInDB.queryLatestID(context);
 							if(map !=null){
 								
 								String fileName = Recorder.getFlName(); 
 								
-								SaveRecorderFileInDB.saveFileNameInDB(context, fileName, (String)map.get("date"),(String)map.get("name"));
+								SaveRecorderFileInDB.saveFileNameInDB(context, fileName, incoming_number,(String)map.get("name"));
+								
+								showNotification(fileName);
 							}
 							
 							
@@ -150,6 +165,8 @@ public class EzPhoneReceiver extends BroadcastReceiver{
 					
 					SaveRecorderFileInDB.saveFileNameInDB(context, fileName, number,name);
 					
+					showNotification(fileName);
+					
 					break;
 				}
 	
@@ -159,4 +176,50 @@ public class EzPhoneReceiver extends BroadcastReceiver{
 			e.printStackTrace();
 		}
 	}
+	private void showNotification(String fileName){
+	  	
+	  	NotificationManager notificationManager=(NotificationManager)mContext.getSystemService("notification");
+	      //設定當按下這個通知之後要執行的activity
+
+	      Intent notifyIntent = new Intent(); 
+	      notifyIntent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	      notifyIntent.setClass(mContext, MainActivity.class);
+	      notifyIntent.putExtra("action", fileName);
+	      String finalMsg = mContext.getString(R.string.notify);
+	      
+	      PendingIntent appIntent=PendingIntent.getActivity(mContext,0,
+	              notifyIntent,PendingIntent.FLAG_CANCEL_CURRENT);
+	      
+	      Notification notification = new Notification();
+	      //設定出現在狀態列的圖示
+	      notification.icon=R.drawable.notification;
+	      
+	      notification.flags = Notification.FLAG_AUTO_CANCEL;
+	      //顯示在狀態列的文字
+	      notification.tickerText= mContext.getString(R.string.keep);
+	      //會有通知預設的鈴聲、振動、light
+	      notification.defaults|=Notification.DEFAULT_ALL;
+	      
+	      long[] vibrate = {100,500,100,1000}; 
+	      notification.vibrate = vibrate;
+	      
+	      //notification.defaults = Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS;
+	      
+	      /*notification.sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+	      
+	      notification.defaults |= Notification.DEFAULT_VIBRATE;
+	      
+	      long[] vibrate = {0,100,200,300};
+	      notification.vibrate = vibrate;
+	      
+	      notification.ledARGB = 0xff00ff00;
+	      notification.ledOnMS = 300;
+	      notification.ledOffMS = 1000;
+	      notification.flags |= Notification.FLAG_SHOW_LIGHTS;
+	      */
+	      //設定通知的標題、內容
+	      notification.setLatestEventInfo(mContext,mContext.getString(R.string.app_name),finalMsg,appIntent);
+	      //送出Notification
+	      notificationManager.notify(new Random().nextInt(50000),notification);
+	  }
 }

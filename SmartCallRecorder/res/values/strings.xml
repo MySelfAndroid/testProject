@@ -7,8 +7,18 @@
 	<string name="enable_title_enable">Enable</string>
 	<string name="enable_title_disable">Disable</string>
 	<string name="enable_msg_detail">Auto call recorder feature</string>
-	<string name="item1">Play Recorder</string>
-	<string name="item2">Delete Recorder</string>
-	<string name="item3">Open Recorder Path</string>
-	
+	<string name="item1">Playback</string>
+	<string name="item2">Delete</string>
+	<string name="item3">Open file folder</string>
+	<string name="notify">Would you like to keep this recorder?</string>
+	<string name="keep">Recorder had been saved</string>
+	<string name="delete">Delete this recorder?</string>
+	<string name="nodata">Congratulations, now we could help you to auto recoder the phone call</string>
+	<string name="title">info</string>
+	<string name="notfound">Could not find this recorder file</string>
+	<string name="delSuc">Delete file success</string>
+	<string name="menu1">Donwload free VPN app</string>
+	<string name="loading">Loading...</string>
+	<string name="disable">Disable</string>
+	<string name="enable">Enable</string>
 </resources>
