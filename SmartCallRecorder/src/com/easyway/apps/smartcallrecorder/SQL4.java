@@ -29,7 +29,8 @@ public class SQL4 extends SQLiteOpenHelper {
 		    "create table MyRecorder ("
 				+ "id INTEGER PRIMARY KEY AUTOINCREMENT,"
 		        + "filename TEXT ,"
-		        + "date TEXT"
+		        + "date TEXT ,"
+		        + "name TEXT "
 		    + ");";
 		//建立config資料表，詳情請參考SQL語法
 		db.execSQL(DATABASE_CREATE_TABLE);

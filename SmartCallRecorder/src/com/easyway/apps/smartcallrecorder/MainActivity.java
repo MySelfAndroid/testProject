@@ -202,7 +202,7 @@ public class MainActivity extends ActionBarActivity {
 			new AlertDialog.Builder(MainActivity.this)
   	        .setIcon(android.R.drawable.ic_menu_more)
   	        .setTitle("Sorry")
-  	        .setCancelable(false)
+  	        .setCancelable(true)
   	        .setItems(items, new OnClickListener(){
 
 				@Override
@@ -271,6 +271,13 @@ public class MainActivity extends ActionBarActivity {
 							 }
 							break;
 						case 2:
+							
+							Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+							Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
+							    + File.separator + Recorder.AUDIO_RECORDER_FOLDER + File.separator);
+							intent.setDataAndType(uri, "text/csv");
+							startActivity(Intent.createChooser(intent, "Open folder"));
+							
 							break;
 					}
 					

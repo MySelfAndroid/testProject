@@ -13,7 +13,7 @@ public class Recorder {
 
 	private static final String AUDIO_RECORDER_FILE_EXT_3GP = ".3gp";
     private static final String AUDIO_RECORDER_FILE_EXT_MP4 = ".mp4";
-    static final String AUDIO_RECORDER_FOLDER = "iCallRecorder";
+    static final String AUDIO_RECORDER_FOLDER = "SmartCallRecorder";
     public static boolean onRuning = false;
     private static int output_formats[] = { MediaRecorder.OutputFormat.MPEG_4, MediaRecorder.OutputFormat.THREE_GPP };
     private static String file_exts[] = { AUDIO_RECORDER_FILE_EXT_MP4, AUDIO_RECORDER_FILE_EXT_3GP };
