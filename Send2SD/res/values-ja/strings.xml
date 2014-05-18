@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Save2SD</string>
+    <string name="app_name">SDカードに保存する</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
 	<string name="cancel_label">Cancel</string>
@@ -14,8 +14,8 @@
     <string name="create_folder_error_already_exists">Folder already exists</string>
     <string name="create_folder_error">Could not create folder</string>
     <string name="up_label">Up</string>
-    <string name="button1">Save File</string>
-    <string name="button2">Open Gallery</string>
-    <string name="notes">Save Path:%s</string>
+    <string name="button1">ファイルを保存します</string>
+    <string name="button2">フォトギャラリーを開く</string>
+    <string name="notes">フォルダの場所：%s</string>
     
 </resources>
